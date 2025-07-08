@@ -1,136 +1,110 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Statement Regarding Copyright and Disclosure Requests</title>
+  <meta charset="UTF-8">
+  <title>freepdfcomic.com - 閉鎖のお知らせ</title>
   <style>
     body {
-      font-family: 'Helvetica Neue', sans-serif;
-      background-color: #f9f9f9;
-      color: #222;
-      line-height: 1.8;
-      padding: 40px 20px;
-      max-width: 900px;
-      margin: auto;
-    }
-    h1, h2 {
-      color: #111;
-      border-left: 6px solid #007acc;
-      padding-left: 12px;
-      animation: slideIn 0.5s ease-in-out;
+      background-color: #000;
+      color: #fff;
+      font-family: "Segoe UI", sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 20px;
     }
     h1 {
-      font-size: 2em;
-      margin-top: 0;
-    }
-    h2 {
-      font-size: 1.4em;
-      margin-top: 2em;
+      font-size: 2rem;
+      margin-bottom: 1em;
+      animation: fadeIn 2s ease-in;
     }
     p {
-      margin: 1em 0;
-      animation: fadeIn 1s ease;
+      font-size: 1.2rem;
+      margin-bottom: 1em;
     }
-    .section {
-      background: #fff;
-      padding: 20px 25px;
-      border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-      margin-bottom: 30px;
-      animation: slideInUp 0.6s ease;
-    }
-    .emoji {
-      font-size: 1.4em;
-      margin-right: 8px;
-    }
-    #lang-switcher {
-      text-align: center;
-      margin-bottom: 30px;
-    }
-    #lang-switcher button {
-      background-color: #007acc;
-      border: none;
-      color: white;
-      font-weight: bold;
+    button {
       padding: 10px 20px;
-      margin: 0 10px;
-      border-radius: 8px;
+      font-size: 1rem;
       cursor: pointer;
+      background-color: #222;
+      border: 1px solid #555;
+      color: #fff;
       transition: background-color 0.3s ease;
     }
-    #lang-switcher button:hover {
-      background-color: #005f99;
+    button:hover {
+      background-color: #444;
     }
-    #lang-switcher button.active {
-      background-color: #004d7a;
+    .links {
+      margin-top: 2em;
+      animation: fadeIn 1s ease-in;
+      width: 100%;
+      max-width: 500px;
     }
-    @keyframes slideIn {
-      from { opacity: 0; transform: translateX(-30px); }
-      to { opacity: 1; transform: translateX(0); }
+    .links div {
+      margin-bottom: 10px;
     }
-    @keyframes slideInUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
+    a {
+      color: #0af;
+      text-decoration: none;
+      font-size: 1.1rem;
+    }
+    a:hover {
+      text-decoration: underline;
     }
     @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
     }
   </style>
 </head>
 <body>
 
-  <div id="content-en" class="lang-section">
-    <div class="section">
-      <h1><span class="emoji">🚫</span>Regarding Post Site Closure Response</h1>
-      <p>We recognize that the disclosure request submitted by Shueisha concerning this site on the grounds of copyright infringement raises serious issues. The problem with this request is the demand for submission of access logs to specific URLs, that is, the disclosure of personal information such as IP addresses of users who “viewed” those pages.</p>
-      <p>However, this is fundamentally based on a premise that “viewing = criminal act,” which is legally and factually incorrect. (Whether in the US or by Shueisha, what is being done is an unjust abuse of power that tramples individual freedom and privacy across borders, and must never be tolerated.)</p>
-    </div>
+  <h1>このサイトは閉鎖されました</h1>
+  <p><em>*rリスト利用者の方へ</em></p>
+  <button onclick="showFavorites()">お気に入りリストを取得</button>
 
-    <div class="section">
-      <h2><span class="emoji">📘</span>Viewing Is Not a Crime — A Global Understanding</h2>
-      <p>(Except in places like China where viewing censored content can be punishable)</p>
-      <p>Under current Japanese copyright law, simply viewing any content, including illegally uploaded material, is generally neither illegal nor subject to punishment.</p>
-      <p>Therefore, attempts to acquire personal information from users who merely browse a website lack legal basis and risk setting a dangerously precedent infringing freedom of expression and privacy rights.</p>
-      <p>Disclosure requests based on such claims are an abuse of the law and can be rightly called an abusive exercise of power under the guise of legitimate copyright protection.</p>
-    </div>
+  <div id="result" class="links"></div>
 
-    <div class="section">
-      <h2><span class="emoji">⚠️</span>Serious Issues for Society</h2>
-      <p>If such requests are accepted, in the future, every “information viewing act” could be forced into an internet environment without anonymity.</p>
-      <p>This poses a serious threat to freedom of expression and the right to know, endangering the information society.</p>
-      <p>Moreover, companies abusing their influence to unjustly collect information on ordinary users could mark the first step toward private censorship and a surveillance society.</p>
-    </div>
+  <script>
+    function getCookie(name) {
+      const value = `; ${document.cookie}`;
+      const parts = value.split(`; ${name}=`);
+      if (parts.length === 2) return parts.pop().split(';').shift();
+    }
 
-    <div class="section">
-      <h2><span class="emoji">🛡</span>Our Response Policy</h2>
-      <p>Accordingly, we judge this disclosure request to be seriously legally and ethically flawed, and are currently taking legal actions under U.S. law to seek revision and refusal of the request.</p>
-      <p>We do not deny copyright protection. However, treating countless viewers as criminals and collecting their personal information on that basis is absolutely unacceptable.</p>
-      <p>If similar cases recur in the future, there is a risk that society will become entrenched in restrictions on citizens’ freedoms under the pretext of copyright.</p>
-      <p>We raise the alarm about such situations and strongly demand appropriate responses to prevent excessive disclosure requests from enabling dominant money strategies by certain companies and organizations that undermine societal freedom and fairness.</p>
-    </div>
+    function showFavorites() {
+      const raw = getCookie('fav_item');
+      if (!raw) {
+        document.getElementById('result').innerHTML = '<p>クッキーが見つかりませんでした。</p>';
+        return;
+      }
 
-    <div class="section">
-      <h2><span class="emoji">🧱</span>Structural Issues Behind the Scenes — Exclusion of Dissent and Imbalance in Publishing</h2>
-      <p>There are structural issues behind the repeated excessive disclosure requests related to how copyright systems are operated.</p>
-      <p>Originally, copyright systems should protect creators’ rights while balancing cultural development and the public’s freedom to know.</p>
-      <p>However, in reality, copyright is treated not as a “cultural asset” but as a “means of monopolizing revenue” at the heart of the publishing industry.</p>
-      <p>In particular, major publishers like Shueisha own vast intellectual properties (especially manga and novels), maintaining their revenue structure through strong copyright enforcement and strict operation.</p>
-      <p>Therefore, criticism of copyright system flexibility or excessive rights exercise is not welcomed internally but tends to be avoided even at the planning stage.</p>
-      <p>In fact, authors with critical or reformist views on copyright (****, ***, **** etc.—names removed to avoid issues) have their books published by academic and ideological publishers such as Iwanami Shoten, Chikuma Shinsho, or Seidosha, rather than major commercial publishers like Shueisha.</p>
-      <p>In other words, it is not that they “don’t publish with major commercial publishers,” but rather that they “cannot publish”—this is the current reality of the publishing environment.</p>
-      <p>We omit the background regarding these companies’ large political donations to specific groups.</p>
-      <p>There are no explicitly stated prohibitions or direct pressures.</p>
-      <p>However, the tacit understanding that “projects proposing copyright revisions will not pass” and “statements threatening revenue are unwelcome” has quietly excluded critical discussions from the publishing field.</p>
-      <p>This “structural imbalance in publishing” underpins and justifies acts like excessive disclosure requests from inside the system, allowing pressure on citizens’ freedom to pass uncritically.</p>
-      <p>We do not deny copyright operation itself.</p>
-      <p>However, if it becomes integrated with specific corporate profit strategies, silences dissent, and damages freedom and diversity in civil society, it must be called not “system operation” but rather “structural abuse of power.”</p>
-      <p>We should not overlook a society where criticism is suppressed, publishing is biased, and a free environment for creation and expression is quietly eroded under the name of copyright.</p>
-      <p>We strongly oppose this very structure — and it is with this stance that we choose to part ways. This site will be permanently shut down.</p>
-    </div>
-  </div>
+      try {
+        const decoded = decodeURIComponent(raw);
+        const ids = JSON.parse(decoded);
 
+        if (!Array.isArray(ids)) throw new Error();
+
+        const container = document.getElementById('result');
+        container.innerHTML = ''; // 初期化
+
+        ids.forEach(id => {
+          const div = document.createElement('div');
+          const a = document.createElement('a');
+          a.href = `https://freepdfcomic.eu/archives/${id}`;
+          a.textContent = id;
+          a.target = '_blank';
+          div.appendChild(a);
+          container.appendChild(div);
+        });
+
+      } catch (e) {
+        document.getElementById('result').innerHTML = '<p>クッキーの形式が不正です。</p>';
+      }
+    }
+  </script>
 
 </body>
 </html>
