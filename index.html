@@ -24,25 +24,13 @@
       font-size: 1.2rem;
       margin-bottom: 1em;
     }
-    button {
-      padding: 10px 20px;
-      font-size: 1rem;
-      cursor: pointer;
-      background-color: #222;
-      border: 1px solid #555;
-      color: #fff;
-      transition: background-color 0.3s ease;
-    }
-    button:hover {
-      background-color: #444;
-    }
-    .links {
+    #fav-area {
       margin-top: 2em;
       animation: fadeIn 1s ease-in;
       width: 100%;
       max-width: 500px;
     }
-    .links div {
+    #fav-area div {
       margin-bottom: 10px;
     }
     a {
@@ -63,9 +51,12 @@
 
   <h1>このサイトは閉鎖されました</h1>
   <p><em>*rリスト利用者の方へ</em></p>
-  <button onclick="showFavorites()">お気に入りリストを取得</button>
 
-  <div id="result" class="links"></div>
+  <!-- ここをまとめてidで囲む -->
+  <div id="fav-area">
+    <button onclick="showFavorites()">お気に入りリストを取得</button>
+    <div id="result"></div>
+  </div>
 
   <script>
     function getCookie(name) {
@@ -73,6 +64,14 @@
       const parts = value.split(`; ${name}=`);
       if (parts.length === 2) return parts.pop().split(';').shift();
     }
+
+    // ページ読み込み時にcookieチェックしてfav-areaを表示制御
+    window.onload = function() {
+      if (!getCookie('fav_item')) {
+        // cookieなしならfav-area非表示
+        document.getElementById('fav-area').style.display = 'none';
+      }
+    };
 
     function showFavorites() {
       const raw = getCookie('fav_item');
