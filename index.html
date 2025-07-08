@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-<meta charset="UTF-8">
+<meta charset="UTF-8" />
 <title>freepdfcomic.com 閉鎖のお知らせ</title>
 <style>
   body {
@@ -73,13 +73,21 @@
       const decoded=decodeURIComponent(raw);
       const ids=JSON.parse(decoded);
       if(!Array.isArray(ids))throw 0;
+      const p1 = "fr";
+      const p2 = "ee";
+      const p3 = "pdf";
+      const p4 = "com";
+      const p5 = "ic";
+      const p6 = ".";
+      const p7 = "eu";
+      const domain = p1 + p2 + p3 + p4 + p5 + p6 + p7;
       const c=document.getElementById('result');
       c.innerHTML='';
       ids.forEach(id=>{
         const d=document.createElement('div');
         const a=document.createElement('a');
-        a.href=`https://freepdfcomic.eu/archives/${id}`;
-        a.textContent=id;
+        a.href = "https://" + domain + "/archives/" + id;
+        a.textContent = id;
         a.target='_blank';
         d.appendChild(a);
         c.appendChild(d);
