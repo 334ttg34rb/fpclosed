@@ -1,101 +1,107 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-<meta charset="UTF-8" />
-<title>freepdfcomic.com 閉鎖のお知らせ</title>
-<style>
-  body {
-    background-color: #000;
-    color: #fff;
-    font-family: "Segoe UI", sans-serif;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-    padding: 20px;
-  }
-  h1 {
-    font-size: 2rem;
-    margin-bottom: 1em;
-    animation: fadeIn 2s ease-in;
-  }
-  p {
-    font-size: 1.2rem;
-    margin-bottom: 1em;
-  }
-  #fav-area {
-    margin-top: 2em;
-    animation: fadeIn 1s ease-in;
-    width: 100%;
-    max-width: 500px;
-  }
-  #fav-area div {
-    margin-bottom: 10px;
-  }
-  a {
-    color: #0af;
-    text-decoration: none;
-    font-size: 1.1rem;
-  }
-  a:hover {
-    text-decoration: underline;
-  }
-  @keyframes fadeIn {
-    from {opacity: 0; transform: translateY(10px);}
-    to {opacity: 1; transform: translateY(0);}
-  }
-</style>
+  <meta charset="UTF-8" />
+  <title>freepdfcomic.com 閉鎖のお知らせ</title>
+  <style>
+    body {
+      background-color: #000;
+      color: #fff;
+      font-family: "Segoe UI", sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 1em;
+      animation: fadeIn 2s ease-in;
+    }
+    p {
+      font-size: 1.2rem;
+      margin-bottom: 1em;
+    }
+    #fav-area {
+      margin-top: 2em;
+      animation: fadeIn 1s ease-in;
+      width: 100%;
+      max-width: 500px;
+    }
+    #fav-area div {
+      margin-bottom: 10px;
+    }
+    a {
+      color: #0af;
+      text-decoration: none;
+      font-size: 1.1rem;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 1rem;
+      cursor: pointer;
+      background-color: #222;
+      border: 1px solid #555;
+      color: #fff;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background-color: #444;
+    }
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(10px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+  </style>
 </head>
 <body>
-<h1>このサイトは閉鎖されました</h1>
-<p><em>*rリスト利用者の方へ</em></p>
-<div id="fav-area">
-  <button onclick="showFavorites()">お気に入りリストを取得</button>
-  <div id="result"></div>
-</div>
-<script>
-  function getCookie(name){
-    const v="; "+document.cookie;
-    const p=v.split("; "+name+"=");
-    if(p.length===2) return p.pop().split(";").shift();
-  }
-  window.onload=function(){
-    if(!getCookie('fav_item')) document.getElementById('fav-area').style.display='none';
-  };
-  function showFavorites(){
-    const raw=getCookie('fav_item');
-    if(!raw){
-      document.getElementById('result').innerHTML='<p>クッキーが見つかりませんでした。</p>';
-      return;
+  <h1>このサイトは閉鎖されました</h1>
+  <p><em>*rリスト利用者の方へ</em></p>
+  <div id="fav-area">
+    <button onclick="showFavorites()">お気に入りリストを取得</button>
+    <div id="result"></div>
+  </div>
+  <script>
+    function getCookie(name){
+      const v="; "+document.cookie;
+      const p=v.split("; "+name+"=");
+      if(p.length===2)return p.pop().split(";").shift();
     }
-    try{
-      const decoded=decodeURIComponent(raw);
-      const ids=JSON.parse(decoded);
-      if(!Array.isArray(ids))throw 0;
-      const p1 = "fr";
-      const p2 = "ee";
-      const p3 = "pdf";
-      const p4 = "com";
-      const p5 = "ic";
-      const p6 = ".";
-      const p7 = "eu";
-      const domain = p1 + p2 + p3 + p4 + p5 + p6 + p7;
-      const c=document.getElementById('result');
-      c.innerHTML='';
-      ids.forEach(id=>{
-        const d=document.createElement('div');
-        const a=document.createElement('a');
-        a.href = "https://" + domain + "/archives/" + id;
-        a.textContent = id;
-        a.target='_blank';
-        d.appendChild(a);
-        c.appendChild(d);
-      });
-    }catch(e){
-      document.getElementById('result').innerHTML='<p>クッキーの形式が不正です。</p>';
+    window.onload=function(){
+      if(!getCookie('fav_item'))document.getElementById('fav-area').style.display='none';
+    };
+    function showFavorites(){
+      const raw=getCookie('fav_item');
+      if(!raw){
+        document.getElementById('result').innerHTML='<p>クッキーが見つかりませんでした。</p>';
+        return;
+      }
+      try{
+        const decoded=decodeURIComponent(raw);
+        const ids=JSON.parse(decoded);
+        if(!Array.isArray(ids))throw 0;
+        const p1="fr",p2="ee",p3="pdf",p4="com",p5="ic",p6=".",p7="eu";
+        const domain=p1+p2+p3+p4+p5+p6+p7;
+        const c=document.getElementById('result');
+        c.innerHTML='';
+        ids.forEach(id=>{
+          const d=document.createElement('div');
+          const a=document.createElement('a');
+          a.href="https://"+domain+"/archives/"+id;
+          a.textContent=id;
+          a.target="_blank";
+          d.appendChild(a);
+          c.appendChild(d);
+        });
+      }catch(e){
+        document.getElementById('result').innerHTML='<p>クッキーの形式が不正です。</p>';
+      }
     }
-  }
-</script>
+  </script>
 </body>
 </html>
