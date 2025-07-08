@@ -1,109 +1,93 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <title>freepdfcomic.com 閉鎖のお知らせ</title>
-  <style>
-    body {
-      background-color: #000;
-      color: #fff;
-      font-family: "Segoe UI", sans-serif;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
-      padding: 20px;
-    }
-    h1 {
-      font-size: 2rem;
-      margin-bottom: 1em;
-      animation: fadeIn 2s ease-in;
-    }
-    p {
-      font-size: 1.2rem;
-      margin-bottom: 1em;
-    }
-    #fav-area {
-      margin-top: 2em;
-      animation: fadeIn 1s ease-in;
-      width: 100%;
-      max-width: 500px;
-    }
-    #fav-area div {
-      margin-bottom: 10px;
-    }
-    a {
-      color: #0af;
-      text-decoration: none;
-      font-size: 1.1rem;
-    }
-    a:hover {
-      text-decoration: underline;
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-  </style>
+<meta charset="UTF-8">
+<title>freepdfcomic.com 閉鎖のお知らせ</title>
+<style>
+  body {
+    background-color: #000;
+    color: #fff;
+    font-family: "Segoe UI", sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 20px;
+  }
+  h1 {
+    font-size: 2rem;
+    margin-bottom: 1em;
+    animation: fadeIn 2s ease-in;
+  }
+  p {
+    font-size: 1.2rem;
+    margin-bottom: 1em;
+  }
+  #fav-area {
+    margin-top: 2em;
+    animation: fadeIn 1s ease-in;
+    width: 100%;
+    max-width: 500px;
+  }
+  #fav-area div {
+    margin-bottom: 10px;
+  }
+  a {
+    color: #0af;
+    text-decoration: none;
+    font-size: 1.1rem;
+  }
+  a:hover {
+    text-decoration: underline;
+  }
+  @keyframes fadeIn {
+    from {opacity: 0; transform: translateY(10px);}
+    to {opacity: 1; transform: translateY(0);}
+  }
+</style>
 </head>
 <body>
-
-  <h1>このサイトは閉鎖されました</h1>
-  <p><em>リスト利用者の方へ</em></p>
-
-  <!-- ここをまとめてidで囲む -->
-  <div id="fav-area">
-    <button onclick="showFavorites()">お気に入りリストを取得</button>
-    <div id="result"></div>
-  </div>
-
-  <script>
-    function getCookie(name) {
-      const value = `; ${document.cookie}`;
-      const parts = value.split(`; ${name}=`);
-      if (parts.length === 2) return parts.pop().split(';').shift();
+<h1>このサイトは閉鎖されました</h1>
+<p><em>*rリスト利用者の方へ</em></p>
+<div id="fav-area">
+  <button onclick="showFavorites()">お気に入りリストを取得</button>
+  <div id="result"></div>
+</div>
+<script>
+  function getCookie(name){
+    const v="; "+document.cookie;
+    const p=v.split("; "+name+"=");
+    if(p.length===2) return p.pop().split(";").shift();
+  }
+  window.onload=function(){
+    if(!getCookie('fav_item')) document.getElementById('fav-area').style.display='none';
+  };
+  function showFavorites(){
+    const raw=getCookie('fav_item');
+    if(!raw){
+      document.getElementById('result').innerHTML='<p>クッキーが見つかりませんでした。</p>';
+      return;
     }
-
-    // ページ読み込み時にcookieチェックしてfav-areaを表示制御
-    window.onload = function() {
-      if (!getCookie('fav_item')) {
-        // cookieなしならfav-area非表示
-        document.getElementById('fav-area').style.display = 'none';
-      }
-    };
-
-    function showFavorites() {
-      const raw = getCookie('fav_item');
-      if (!raw) {
-        document.getElementById('result').innerHTML = '<p>クッキーが見つかりませんでした。</p>';
-        return;
-      }
-
-      try {
-        const decoded = decodeURIComponent(raw);
-        const ids = JSON.parse(decoded);
-
-        if (!Array.isArray(ids)) throw new Error();
-
-        const container = document.getElementById('result');
-        container.innerHTML = ''; // 初期化
-
-        ids.forEach(id => {
-          const div = document.createElement('div');
-          const a = document.createElement('a');
-          a.href = `https://freepdfcomic.eu/archives/${id}`;
-          a.textContent = id;
-          a.target = '_blank';
-          div.appendChild(a);
-          container.appendChild(div);
-        });
-
-      } catch (e) {
-        document.getElementById('result').innerHTML = '<p>クッキーの形式が不正です。</p>';
-      }
+    try{
+      const decoded=decodeURIComponent(raw);
+      const ids=JSON.parse(decoded);
+      if(!Array.isArray(ids))throw 0;
+      const c=document.getElementById('result');
+      c.innerHTML='';
+      ids.forEach(id=>{
+        const d=document.createElement('div');
+        const a=document.createElement('a');
+        a.href=`https://freepdfcomic.eu/archives/${id}`;
+        a.textContent=id;
+        a.target='_blank';
+        d.appendChild(a);
+        c.appendChild(d);
+      });
+    }catch(e){
+      document.getElementById('result').innerHTML='<p>クッキーの形式が不正です。</p>';
     }
-  </script>
-
+  }
+</script>
 </body>
 </html>
