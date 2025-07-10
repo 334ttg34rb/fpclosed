@@ -61,46 +61,6 @@
 </head>
 <body>
   <h1>このサイトは閉鎖されました</h1>
-  <div id="fav-area">
-    <button onclick="showFavorites()">お気に入りリストを取得</button>
-    <div id="result"></div>
-  </div>
-  <script>
-    function getCookie(name){
-      const v="; "+document.cookie;
-      const p=v.split("; "+name+"=");
-      if(p.length===2)return p.pop().split(";").shift();
-    }
-    window.onload=function(){
-      if(!getCookie('fav_item'))document.getElementById('fav-area').style.display='none';
-    };
-    function showFavorites(){
-      const raw=getCookie('fav_item');
-      if(!raw){
-        document.getElementById('result').innerHTML='<p>クッキーが見つかりませんでした。</p>';
-        return;
-      }
-      try{
-        const decoded=decodeURIComponent(raw);
-        const ids=JSON.parse(decoded);
-        if(!Array.isArray(ids))throw 0;
-        const p1="fr",p2="ee",p3="pdf",p4="com",p5="ic",p6=".",p7="eu";
-        const domain=p1+p2+p3+p4+p5+p6+p7;
-        const c=document.getElementById('result');
-        c.innerHTML='';
-        ids.forEach(id=>{
-          const d=document.createElement('div');
-          const a=document.createElement('a');
-          a.href="https://"+domain+"/archives/"+id;
-          a.textContent=id;
-          a.target="_blank";
-          d.appendChild(a);
-          c.appendChild(d);
-        });
-      }catch(e){
-        document.getElementById('result').innerHTML='<p>クッキーの形式が不正です。</p>';
-      }
-    }
-  </script>
+  
 </body>
 </html>
