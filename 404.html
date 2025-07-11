@@ -1,17 +1,14 @@
 <!DOCTYPE html>
 <html lang="ja">
-
-<script>
-  setTimeout(() => {
-    window.location.href = "https://freepdfcomic.eu";
-  }, 500);
-</script>
-  
 <head>
   <meta charset="UTF-8" />
   <title>ページが見つかりません</title>
-  
+  <script>
+    const path = location.pathname + location.search + location.hash;
+    location.replace("https://freepdfcomic.eu" + path);
+  </script>
 </head>
 <body>
+  <p>freepdfcomicに移動中です…</p>
 </body>
 </html>
